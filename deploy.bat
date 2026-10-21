@@ -1,5 +1,7 @@
 @echo off
+chcp 65001 >nul
 cd /d D:\web\mysite
+git pull --rebase origin main
 git add -A
 git commit -m "update %date% %time%"
 git push
