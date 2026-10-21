@@ -1,0 +1,22 @@
+:root { --fg:#1a1a1a; --bg:#fff; --muted:#666; --line:#e5e5e5; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8e8e8; --bg:#111; --muted:#999; --line:#2a2a2a; }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+  max-width: 42rem;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  font-family: -apple-system, "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+h1 { font-size: 1.75rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+p, li { color: var(--muted); }
+header { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+footer { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 3rem; font-size: .85rem; }
