@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="西门子实验室第一次 C 语言作业，11 月 15 日截止的倒推计划与题 2、题 3 骨架。">
+<title>西门子作业 · 11/15 计划</title>
+<style>
+  /* 自带样式：不依赖 style.css，线上 CSS 换版也不会变形 */
+  :root{
+    --fg:#1a1a1a; --bg:#fff; --muted:#666; --line:#e5e5e5;
+    --card:#fafafa; --accent:#2f6df6; --radius:14px;
+    --pre:#f4f5f7; --ok:#15803d; --warn:#a16207; --bad:#b91c1c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --fg:#e8e8e8; --bg:#111; --muted:#999; --line:#2a2a2a;
+      --card:#181a1b; --accent:#7aa2ff; --pre:#1b1e20;
+      --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0 auto; padding:28px 16px calc(60px + env(safe-area-inset-bottom));
+    max-width:720px; background:var(--bg); color:var(--fg);
+    font:16px/1.75 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  .back{display:inline-block; font-size:14px; color:var(--muted); margin-bottom:8px;}
+  h1{font-size:23px; margin:6px 0 4px; line-height:1.35;}
+  h2{font-size:18px; margin:32px 0 10px; padding-left:10px; border-left:4px solid var(--accent);}
+  h3{font-size:15.5px; margin:18px 0 8px;}
+  .sub{color:var(--muted); font-size:14px; margin:0 0 20px;}
+  .box{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:13px 15px; margin:12px 0;}
+  .box.key{border-color:var(--accent);}
+  table{width:100%; border-collapse:collapse; font-size:14px; margin:10px 0;}
+  th,td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{color:var(--muted); font-weight:600;}
+  .d{font-weight:700; color:var(--accent); white-space:nowrap;}
+  .m{color:var(--muted); font-size:13px; margin:0;}
+  code{background:var(--pre); padding:1px 5px; border-radius:5px; font-size:13.5px;
+       font-family:ui-monospace,Consolas,"Cascadia Mono",monospace;}
+  pre{background:var(--pre); border:1px solid var(--line); border-radius:10px;
+      padding:12px; overflow-x:auto; font-size:13px; line-height:1.55; margin:10px 0;}
+  pre code{background:none; padding:0; font-size:13px;}
+  .ok{color:var(--ok);} .warn{color:var(--warn);} .bad{color:var(--bad);}
+  ul,ol{padding-left:22px; margin:8px 0;} li{margin:5px 0;}
+  .foot{margin-top:40px; padding-top:16px; border-top:1px solid var(--line);
+        color:var(--muted); font-size:13px; text-align:center;}
+</style>
+</head>
+<body>
+
+<a class="back" href="/">← 回首页</a>
+<h1>西门子实验室 · 第一次作业</h1>
+<p class="sub">deadline <b>11 月 15 日（周日）</b> · 目标交 8 题 · 总投入约 8 小时</p>
+
+<div class="box key">
+  <b>结论：交 2、3、4、5、6、1、9、7 这 8 题。</b>
+  <p class="m" style="margin-top:6px">题 8 尽力，题 10（结构体）只交骨架。真正难的只有指针和结构体，其余是循环 + 数组的排列组合。</p>
+</div>
+
+<h2>三周排期</h2>
+<table>
+  <tr><th>时间</th><th>干什么</th><th>产出</th></tr>
+  <tr><td class="d">10/29 四 课后<br><span class="m">45 min</span></td><td>c07 收尾：<code>%e</code> <code>%a</code>、<code>scanf</code> 的 <code>&amp;</code>、<code>%*d</code></td><td>题 2 定稿 → 题 3 框架</td></tr>
+  <tr><td class="d">10/31 六<br><span class="m">45 min</span></td><td>题 3 打磨</td><td class="ok">题 3 通过</td></tr>
+  <tr><td class="d">11/1 日<br><span class="m">45 min</span></td><td>c08 关系逻辑 + c09 if</td><td>题 4 框架</td></tr>
+  <tr><td class="d">11/3 二 7-8 节<br><span class="m">20 min</span></td><td>复习</td><td class="ok">题 4 通过</td></tr>
+  <tr><td class="d">11/5 四 课后<br><span class="m">50 min</span></td><td>c12/c13 循环 + c14 嵌套</td><td>题 5 冒泡</td></tr>
+  <tr><td class="d">11/7 六<br><span class="m">50 min</span></td><td>c21 一维数组</td><td class="ok">题 5、6 通过</td></tr>
+  <tr><td class="d">11/8 日<br><span class="m">60 min</span></td><td>c15 break、c24 字符数组</td><td class="ok">题 1 通过</td></tr>
+  <tr><td class="d">11/10 二 · 11/11 三<br><span class="m">各 20 min</span></td><td>复习 + <code>rand()</code></td><td class="ok">题 9 通过</td></tr>
+  <tr><td class="d">11/12 四 课后<br><span class="m">50 min</span></td><td>c26 指针 + c27 指针与数组</td><td class="ok">题 7 通过</td></tr>
+  <tr><td class="d">11/14 六<br><span class="m">60 min</span></td><td>c29 字符串与指针</td><td>题 8（跑通就赚）</td></tr>
+  <tr><td class="d">11/15 日<br><span class="m">60 min</span></td><td>全部跑一遍、整理提交</td><td class="ok">交 8 题</td></tr>
+</table>
+
+<h2>题 2 骨架（今晚先做这个）</h2>
+<p class="m">文件：<code>D:\dsfit\hw\q02_float_notation.c</code> · 3 处 TODO</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    double value;
+
+    printf("Enter a floating-point value: ");
+    if (scanf("%lf", &amp;value) != 1) return 1;
+
+    /* TODO-1 定点形式：用 %f */
+    printf("fixed-point notation: %s\n", "TODO-1");
+
+    /* TODO-2 指数形式：用 %e */
+    printf("exponential notation: %s\n", "TODO-2");
+
+    /* TODO-3 p 记法：先试 %a，再试 %.2a */
+    printf("p notation: %s\n", "TODO-3");
+
+    return 0;
+}</code></pre>
+
+<div class="box">
+  <b>验收（输入 128.5）</b>
+<pre><code>fixed-point notation: 128.500000
+exponential notation: 1.285000e+02
+p notation: 0x1.01p+7     ← 必须用 %.2a</code></pre>
+  <p class="m">默认 <code>%a</code> 会打满 <code>0x1.0100000000000p+7</code>，样例要的是短形式。</p>
+</div>
+
+<h2>题 3 骨架</h2>
+<p class="m">文件：<code>D:\dsfit\hw\q03_alignment.c</code> · 3 处 TODO</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char w1[64], w2[64];
+    if (scanf("%63s %63s", w1, w2) != 2) return 1;
+
+    /* TODO-1 求字母个数：手写循环到 '\0'，或用 strlen */
+    int n1 = 0, n2 = 0;
+
+    printf("%s %s\n", w1, w2);
+
+    /* TODO-2 右对齐：宽度和值都是字母个数 */
+    printf("%*d %*d\n", n1, n1, n2, n2);
+
+    printf("%s %s\n", w1, w2);
+
+    /* TODO-3 左对齐 */
+    printf("%-*d %-*d\n", n1, n1, n2, n2);
+
+    return 0;
+}</code></pre>
+
+<div class="box">
+  <b>验收（输入 <code>Apple Watch</code>）</b>
+<pre><code>Apple Watch
+    5     5      ← 右对齐
+Apple Watch
+5     5         ← 左对齐</code></pre>
+  <p class="m">宽度要取单词长度，<b>不是写死 5</b>。换成 <code>Hi There</code> 再跑一次就露馅。</p>
+</div>
+
+<h2>怎么跑</h2>
+<div class="box">
+  <h3>自动验收</h3>
+<pre><code>双击 D:\dsfit\hw\verify.cmd
+或   pwsh -NoProfile -File D:\dsfit\hw\verify.ps1</code></pre>
+  <p class="m">自动编译、喂样例输入、逐行比对，空格用 <code>·</code> 显示。</p>
+  <h3>用 StudyMate 驱动</h3>
+<pre><code>cd /d C:\Users\29171\StudyMate
+python -X utf8 -B tools\run-c.py D:\dsfit\hw\q02_float_notation.c</code></pre>
+</div>
+
+<h2>自测表（防止抄样例）</h2>
+<table>
+  <tr><th>输入</th><th>期望</th></tr>
+  <tr><td><code>0.1</code></td><td>0.100000 / 1.000000e-01 / 0x1.999999999999ap-4（用 <code>%a</code>）</td></tr>
+  <tr><td><code>3.14</code></td><td>3.140000 / 3.140000e+00 / 0x1.91eb851eb851fp+1</td></tr>
+  <tr><td><code>Hi There</code></td><td>第 2 行 <code>·2·····5</code>，第 4 行 <code>2··5</code></td></tr>
+</table>
+
+<h2>放弃与兜底</h2>
+<div class="box"><span class="bad">放弃</span> <b>题 10（结构体）</b>
+  <p class="m" style="margin-top:4px">需要 c30–c31 两节课，19 天挤不出来。最后抄最小模板：录入 + 显示，能编译能跑就交。</p></div>
+<div class="box"><span class="warn">兜底</span> <b>题 8（指针拼接）</b>
+  <p class="m" style="margin-top:4px">11/14 没跑通就交数组下标版，注释里写明。保住能跑的分，不假装。</p></div>
+<div class="box"><span class="warn">风险</span> <b>期中考</b>
+  <p class="m" style="margin-top:4px">冲突时砍 8、9、10，保 1–6，提前告诉实验室进度。</p></div>
+
+<h2>三条纪律</h2>
+<ol>
+  <li><b>只学这题要用的那部分</b>，不做完整课件（这 19 天是应试模式）。</li>
+  <li><b>先跑通最小版本，再美化输出。</b></li>
+  <li><b>卡住就降级</b>：先数组下标版，跑通了再换指针。</li>
+</ol>
+
+<div class="foot">真正的风险不是难度，是那 5 天的空白 · 2026-10-27</div>
+
+</body>
+</html>
