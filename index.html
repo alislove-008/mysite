@@ -1,26 +1,78 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>我的站</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黎的折腾记录</title>
+<meta name="description" content="电气专业，在学 AI 和做网站。这里放我的笔记、做的小东西，还有一些没想清楚的想法。">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>随便写点什么</h1>
-    <p>一个还在找方向的站点。</p>
-  </header>
 
-  <main>
-    <section>
-      <h2>最近在折腾</h2>
-      <ul>
-        <li>2026-10-20 建了这个站，还没想好干嘛</li>
-      </ul>
-    </section>
-  </main>
+<header class="site-header">
+  <a class="brand" href="/">黎的折腾记录</a>
+  <nav class="nav">
+    <a href="#notes">记录</a>
+    <a href="#files">文件</a>
+    <a href="hw.html">作业</a>
+    <a href="c.html">C 练习</a>
+    <a href="https://github.com/alislove-008" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
 
-  <footer>© 2026 me</footer>
+<main>
+
+  <section class="hero">
+    <p class="eyebrow">电气专业 · 大一</p>
+    <h1>在把想法变成网页的人</h1>
+    <p class="lede">学电路，也学 AI 和写代码。这里放我的笔记、做的小东西，和一些还没想清楚的想法。</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#notes">最近在做什么</a>
+      <a class="btn" href="#files">下载资料</a>
+      <a class="btn" href="c.html">C 在线练习</a>
+    </div>
+  </section>
+
+  <section id="notes">
+    <h2>最近</h2>
+    <div class="cards">
+      <article class="card">
+        <p class="card-meta">2026-10-21</p>
+        <h3>这个站是怎么搭起来的</h3>
+        <p>域名、DNS、GitHub Pages，一条链路走通花了半天。记下踩过的坑。</p>
+      </article>
+      <article class="card">
+        <p class="card-meta">2026-10-20</p>
+        <h3>为什么开始写东西</h3>
+        <p>想法不写下来就散了。先有一个能长期改的地方，再说内容。</p>
+      </article>
+      <article class="card">
+        <p class="card-meta">待写</p>
+        <h3>电路笔记要整理成什么样</h3>
+        <p>想按章节来，每章一页，公式用图片或者 MathJax 渲染。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="files">
+    <h2>文件</h2>
+    <ul class="files">
+      <li>
+        <a href="hw.html">西门子作业 · 11/15 倒推计划（手机版）</a>
+        <span>HTML 页面</span>
+      </li>
+      <li>
+        <a href="c.html">C 在线练习（手机可写可运行）</a>
+        <span>HTML 页面</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 黎晨晨 · <a href="https://www.jcyyy.top">www.jcyyy.top</a></p>
+</footer>
+
 </body>
 </html>
